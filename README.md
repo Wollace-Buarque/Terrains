@@ -35,3 +35,6 @@ Plugin que possibilita comprar terrenos em mundos configuraveis com tamanhos con
  
  • WorldGuard - Download disponível no site do Spigot.
  
+ • Vault - Download disponível no site do Spigot.
+ 
+ • Economia - Qualquer plugin de economia que utilize o Vault.
