@@ -1,0 +1,8 @@
+name: 29Terrains
+main: dev.cromo29.terrains.TerrainPlugin
+version: 3.87
+depend:
+  - DurkCore
+  - WorldEdit
+  - WorldGuard
+  - Vault

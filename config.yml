@@ -1,0 +1,34 @@
+Settings:
+
+# Tempo para usar teleporte:
+  Teleport delay: 30
+
+# Tamanho máximo:
+  Max length: 100
+
+# Máximo de terrenos:
+  Max areas: 6
+
+# Valor para ativar/desativar Entrada:
+  Entry price: 10000
+
+# Valor para ativar/desativar PvP:
+  PvP price: 10000
+
+# Bloco para cercar o terreno.
+  Fence: FENCE
+
+# Preco por bloco:
+  Price per block: 10
+
+# Alinhar:
+  Line up: false
+
+# Remover árvores:
+  Del tree: false
+
+# Tempo para checar iptu (minutos):
+  IPTU check: 1
+
+# Mundo permitido:
+  World: "world"
