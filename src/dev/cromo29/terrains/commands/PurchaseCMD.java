@@ -21,46 +21,47 @@ public class PurchaseCMD extends DurkCommand {
     public void perform() {
 
         if (isArgsLength(2)) {
+            sendMessage("<b>- <r>/" + getUsedCommand() + " <nome> <tamanho> <e>- <7>Comprar um terreno.");
+            return;
+        }
 
-            if (terrainManager.cantPurchase(asPlayer(), true)) return;
+        if (terrainManager.cantPurchase(asPlayer(), true)) return;
 
-            String terrain = argAt(0);
+        String terrain = argAt(0);
 
-            if (!isValidInt(argAt(1))) {
-                warnNotValidNumber(argAt(1));
-                return;
-            }
+        if (!isValidInt(argAt(1))) {
+            warnNotValidNumber(argAt(1));
+            return;
+        }
 
-            int size = getInt(argAt(1));
+        int size = getInt(argAt(1));
 
-            if (size < 10 || size > configuration.getInt("Settings.Max length")) {
-                sendMessage(" <6>☣ <c>O tamanho precisa ter no minimo <f>10 <c> e no máximo <f>%s<c>.", configuration.getInt("Settings.Max length"));
-                return;
-            }
+        if (size < 10 || size > configuration.getInt("Settings.Max length")) {
+            sendMessage(" <6>☣ <c>O tamanho precisa ter no minimo <f>10 <c> e no máximo <f>%s<c>.", configuration.getInt("Settings.Max length"));
+            return;
+        }
 
-            if (size > 50 && !hasPermission("29Terrains.Plus") && !hasPermission("29Terrains.*")) {
-                sendMessage(" <6>☣ <c>Você não pode comprar terrenos a cima de <f>50x50<c>!");
-                return;
-            }
+        if (size > 50 && !hasPermission("29Terrains.Plus") && !hasPermission("29Terrains.*")) {
+            sendMessage(" <6>☣ <c>Você não pode comprar terrenos a cima de <f>50x50<c>!");
+            return;
+        }
 
-            if (!isEven(size)) {
-                sendMessage(" <6>☣ <c>Você só pode colocar números pares.");
-                return;
-            }
+        if (!isEven(size)) {
+            sendMessage(" <6>☣ <c>Você só pode colocar números pares.");
+            return;
+        }
 
-            if (terrain.length() > 12) {
-                sendMessage(" <6>☣ <c>O nome não pode passar de <f>12 <c>caracteres.");
-                return;
-            }
+        if (terrain.length() > 12) {
+            sendMessage(" <6>☣ <c>O nome não pode passar de <f>12 <c>caracteres.");
+            return;
+        }
 
-            if (!terrain.matches("^[a-zA-Z0-9_]*$")) {
-                sendMessage(" <6>☣ <c>Você não pode por caracteres especiais e acentos.");
-                return;
-            }
+        if (!terrain.matches("^[a-zA-Z0-9_]*$")) {
+            sendMessage(" <6>☣ <c>Você não pode por caracteres especiais e acentos.");
+            return;
+        }
 
-            terrainManager.purchase(asPlayer(), size, size, terrain);
-
-        } else sendMessage("<b>- <r>/" + getUsedCommand() + " <nome> <tamanho> <e>- <7>Comprar um terreno.");
+        terrainManager.purchase(asPlayer(), size, size, terrain);
     }
 
     @Override

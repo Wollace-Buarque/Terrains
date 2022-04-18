@@ -18,14 +18,16 @@ public class AreasCMD extends DurkCommand {
 
     @Override
     public void perform() {
-        if (isArgsLength(1) && isArgAtIgnoreCase(0, "reload", "recarregar") && hasPermission("29Terrains.ADM")) {
+        if (!isArgsLength(1) || !isArgAtIgnoreCase(0, "reload", "recarregar") || !hasPermission("29Terrains.*")) {
+            guiAPI.openAreas(asPlayer(), true);
+            return;
+        }
 
-            plugin.reloadConfig();
-            plugin.getData().reload();
+        plugin.reloadConfig();
+        plugin.getData().reload();
 
-            sendMessage(" <2>✔ <a>Configuração recarregada com sucesso.");
+        sendMessage(" <2>✔ <a>Configuração recarregada com sucesso.");
 
-        } else guiAPI.openAreas(asPlayer(), true);
     }
 
     @Override

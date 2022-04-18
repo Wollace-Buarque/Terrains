@@ -17,19 +17,21 @@ public class AddFriendCMD extends DurkCommand {
 
     @Override
     public void perform() {
-        if (isArgsLength(2)) {
 
-            Player target = getPlayer(argAt(0));
+        if (!isArgsLength(2)) {
+            sendMessage("<b>- <r>/" + getUsedCommand() + " <nome> <area> <e>- <7>Adicionar alguém no terreno.");
+            return;
+        }
 
-            if (target == null) {
-                warnPlayerOffline(argAt(0));
-                playSound(asPlayer(), Sound.VILLAGER_NO, 1, 1);
-                return;
-            }
+        Player target = getPlayer(argAt(0));
 
-            plugin.getTerrainManager().addFriend(asPlayer(), target, asPlayer().getName().toLowerCase() + "-" + argAt(1));
+        if (target == null) {
+            warnPlayerOffline(argAt(0));
+            playSound(asPlayer(), Sound.VILLAGER_NO, 1, 1);
+            return;
+        }
 
-        } else sendMessage("<b>- <r>/" + getUsedCommand() + " <nome> <area> <e>- <7>Adicionar alguém no terreno.");
+        plugin.getTerrainManager().addFriend(asPlayer(), target, asPlayer().getName().toLowerCase() + "-" + argAt(1));
     }
 
     @Override
@@ -49,6 +51,6 @@ public class AddFriendCMD extends DurkCommand {
 
     @Override
     public List<String> getAliases() {
-        return getList( "addamigo");
+        return getList("addamigo");
     }
 }

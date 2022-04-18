@@ -57,13 +57,7 @@ public class BlockedTerrainEvent implements Listener {
 
         if (terrain == null) return;
 
-        boolean isMember = false;
-        for (String member : protectedRegion.getMembers().getPlayers()) {
-            if (player.getName().equalsIgnoreCase(member.replace("name:", ""))) {
-                isMember = true;
-                break;
-            }
-        }
+        boolean isMember = protectedRegion.isMember(plugin.getWorldGuard().wrapPlayer(player));
 
         if (!player.getName().equalsIgnoreCase(owner) && !isMember) return;
 

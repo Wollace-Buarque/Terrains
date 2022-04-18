@@ -15,11 +15,12 @@ public class DeleteFriendCMD extends DurkCommand {
 
     @Override
     public void perform() {
-        if (isArgsLength(2)) {
+        if (!isArgsLength(2)) {
+            sendMessage("<b>- <r>/" + getUsedCommand() + " <nome> <area> <e>- <7>Remover alguém do terreno.");
+            return;
+        }
 
-            plugin.getTerrainManager().delFriend(asPlayer(), argAt(0), asPlayer().getName().toLowerCase() + "-" + argAt(1));
-
-        } else sendMessage("<b>- <r>/" + getUsedCommand() + " <nome> <area> <e>- <7>Remover alguém do terreno.");
+        plugin.getTerrainManager().delFriend(asPlayer(), argAt(0), asPlayer().getName().toLowerCase() + "-" + argAt(1));
     }
 
     @Override

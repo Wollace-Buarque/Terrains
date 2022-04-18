@@ -40,17 +40,9 @@ public class SetHomeEvent implements Listener {
 
         if (protectedRegion == null) return;
 
-        final String owner = protectedRegion.getOwners().toUserFriendlyString().replace("name:", "");
+        boolean isMember = protectedRegion.isMember(plugin.getWorldGuard().wrapPlayer(player));
 
-        boolean isMember = false;
-        for (String member : protectedRegion.getMembers().getPlayers()) {
-            if (player.getName().equalsIgnoreCase(member.replace("name:", ""))) {
-                isMember = true;
-                break;
-            }
-        }
-
-        if (player.getName().equalsIgnoreCase(owner) || isMember) return;
+        if (isMember) return;
 
         event.setCancelled(true);
 

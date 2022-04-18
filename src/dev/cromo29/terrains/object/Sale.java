@@ -53,20 +53,20 @@ public class Sale {
     }
 
     public void updateConfig() {
-        Terrain oTerrain = PLUGIN.getTerrainAPI().getTerrain(terrain, owner);
-        PLUGIN.getTerrainAPI().removeTerrain(owner, oTerrain);
+        Terrain currentTerrain = PLUGIN.getTerrainAPI().getTerrain(terrain, owner);
+        PLUGIN.getTerrainAPI().removeTerrain(owner, currentTerrain);
 
-        if (oTerrain == null) return;
+        if (currentTerrain == null) return;
 
-        oTerrain.deleteAsync();
+        currentTerrain.deleteAsync();
 
-        Terrain terrainOBJ = new Terrain(buyer, terrain, oTerrain.getSize());
+        Terrain buyerTerrain = new Terrain(buyer, terrain, currentTerrain.getSize());
 
-        terrainOBJ.setExpiration(oTerrain.getExpiration());
-        terrainOBJ.setBlocked(oTerrain.isBlocked());
-        terrainOBJ.saveAsync();
+        buyerTerrain.setExpiration(currentTerrain.getExpiration());
+        buyerTerrain.setBlocked(currentTerrain.isBlocked());
+        buyerTerrain.saveAsync();
 
-        PLUGIN.getTerrainAPI().addTerrain(buyer, terrainOBJ);
+        PLUGIN.getTerrainAPI().addTerrain(buyer, buyerTerrain);
     }
 
     public void selfDestruct() {

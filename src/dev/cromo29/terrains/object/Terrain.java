@@ -70,9 +70,12 @@ public class Terrain {
     }
 
     public void updateExpiration() {
-        /*expiration += TimeUnit.DAYS.toMillis(30);
+        /*
+        expiration += TimeUnit.DAYS.toMillis(30);
         if (!isExpired()) blocked = false;
+
         saveAsync();
+
         Não pagar todas as dívidas caso estejam vencidas.
          */
 

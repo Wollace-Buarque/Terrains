@@ -742,18 +742,17 @@ public class TerrainManager {
             size = terrain.getSizeMessage();
         }
 
-        boolean isMember = false;
-        StringBuilder members = new StringBuilder();
-        for (String member : protectedRegion.getMembers().getPlayers()) {
-            if (player.getName().equalsIgnoreCase(member.replace("name:", "")))
-                isMember = true;
+        boolean isMemberOrOwner = protectedRegion.isMember(worldGuard.wrapPlayer(player));
 
-            members.append(", ").append(member.replace("name:", ""));
+        String membersString = "";
+        for (String member : protectedRegion.getMembers().getPlayers()) {
+            member =  member.replace("name:", "");
+
+            if (membersString.isEmpty()) membersString += member;
+            else membersString += ", " + member;
         }
 
-        if (!player.getName().equalsIgnoreCase(owner)
-                && !isMember
-                && !player.isOp()) {
+        if (!isMemberOrOwner && !player.isOp()) {
             sendMessages(player,
                     Sound.CLICK,
                     " <2>✔ <a>Esse terreno pertence a <f>" + owner + "<a>.");
@@ -763,29 +762,27 @@ public class TerrainManager {
         String terrainMessage;
 
         if (player.getName().equalsIgnoreCase(owner)) terrainMessage = " <2>✔ <a>Você é o dono deste terreno!";
-        else if (isMember) terrainMessage = "<2>✔ <a>Você é membro deste terreno!";
+        else if (isMemberOrOwner) terrainMessage = "<2>✔ <a>Você é membro deste terreno!";
         else terrainMessage = " <c>✖ <e>Você não é o dono deste terreno!";
 
         sendMessages(player,
                 "",
                 terrainMessage);
 
-        String msgM = "Nenhum";
-        if (!members.toString().isEmpty()) msgM = members.toString();
+        if (!membersString.isEmpty()) {
 
-        if (msgM.contains(player.getName().toLowerCase()))
-            msgM = msgM.replace(player.getName().toLowerCase(), "você");
+            if (membersString.contains(player.getName().toLowerCase()))  {
+                membersString = membersString.replace(player.getName().toLowerCase(), "você");
+            }
 
-        final OfflinePlayer off = plugin.getServer().getOfflinePlayer(owner);
-
-        if (off.hasPlayedBefore()) owner = off.getName();
+        } else membersString = "Nenhum";
 
         sendMessages(player,
                 Sound.CLICK,
                 "",
                 " <a>Terreno: <f>" + StringUtils.capitalize(areaName) + " <7>(" + size + ")",
-                " <a>Dono: <f>" + owner,
-                " <a>Membros: <f>" + WordUtils.capitalize(msgM) + ".",
+                " <a>Dono: <f>" + StringUtils.capitalize(owner),
+                " <a>Membros: <f>" + WordUtils.capitalize(membersString) + ".",
                 " <a>IPTU: <f>" + iptu,
                 "");
     }
@@ -815,11 +812,7 @@ public class TerrainManager {
         final String areaName = id.split("_")[id.split("_").length - 1].replace(owner.toLowerCase() + "-", "");
         final Terrain terrain = terrainAPI.getTerrain(areaName, owner);
 
-        boolean isMember = false;
-        for (String member : protectedRegion.getMembers().getPlayers()) {
-            if (player.getName().equalsIgnoreCase(member.replace("name:", "")))
-                isMember = true;
-        }
+        boolean isMemberOrOwner = protectedRegion.isMember(worldGuard.wrapPlayer(player));
 
         if (terrain == null) {
             sendMessages(player,
@@ -828,7 +821,7 @@ public class TerrainManager {
             return;
         }
 
-        if (!player.getName().equalsIgnoreCase(owner) && !isMember && !player.hasPermission("29Terrains.*")) {
+        if (!isMemberOrOwner && !player.hasPermission("29Terrains.*")) {
             sendMessages(player,
                     Sound.VILLAGER_NO,
                     " <6>☣ <c>Apenas o dono, membro ou staff pode pagar o <f>IPTU<c>!");

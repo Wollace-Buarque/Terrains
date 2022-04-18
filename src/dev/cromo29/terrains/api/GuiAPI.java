@@ -58,8 +58,7 @@ public class GuiAPI {
             for (Terrain terrain : terrains) {
                 String iptuMessage;
 
-                if (terrain.isExpired())
-                    iptuMessage = " <7>IPTU: <c>Vencido <7>(R$ " + NumberUtil.formatNumberSimple(terrain.getIPTUPrice(), '.') + ") ";
+                if (terrain.isExpired()) iptuMessage = " <7>IPTU: <c>Vencido <7>(R$ " + NumberUtil.formatNumberSimple(terrain.getIPTUPrice(), '.') + ") ";
                 else iptuMessage = " <7>Próximo IPTU: <f>" + TimeFormat.getTime(terrain.getExpiration()) + " <7>(R$ " + NumberUtil.formatNumberSimple(terrain.getIPTUPrice(), '.') + ") ";
 
                 inv.setInMiddle(new MakeItem("Vinderguy")
@@ -76,7 +75,6 @@ public class GuiAPI {
                     player.playSound(player.getLocation(), Sound.CLICK, 1, 1);
                 });
 
-                int index = 1;
                 boolean hasPerm = false;
                 int toReturn = 0;
 
@@ -95,6 +93,7 @@ public class GuiAPI {
 
                 } else {
 
+                    int index = 1;
                     while (index < 100) {
 
                         if (player.hasPermission("29Terrains." + index)) {
@@ -155,9 +154,7 @@ public class GuiAPI {
 
         });
 
-        if (warn) {
-            sendMessage(player, Sound.CHEST_OPEN, " <2>✔ <a>Abrindo lista de terrenos...");
-        }
+        if (warn) sendMessage(player, Sound.CHEST_OPEN, " <2>✔ <a>Abrindo lista de terrenos...");
 
         inv.open(player);
     }
@@ -688,10 +685,8 @@ public class GuiAPI {
         if (hasFriends) {
             for (String member : protectedRegion.getMembers().getPlayers()) {
 
-                if (plugin.getServer().getPlayer(member) == null)
-                    status = "<c>Offline";
-                else
-                    status = "<a>Online";
+                if (plugin.getServer().getPlayer(member) == null) status = "<c>Offline";
+                else status = "<a>Online";
 
 
                 String correctlyName = member;
