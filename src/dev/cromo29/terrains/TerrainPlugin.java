@@ -1,12 +1,12 @@
 package dev.cromo29.terrains;
 
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
-import dev.cromo29.durkcore.API.DurkPlugin;
-import dev.cromo29.durkcore.SpecificUtils.NumberUtil;
-import dev.cromo29.durkcore.Util.GsonManager;
-import dev.cromo29.durkcore.Util.TXT;
-import dev.cromo29.durkcore.Util.TimeFormat;
-import dev.cromo29.durkcore.Util.VaultAPI;
+import dev.cromo29.durkcore.api.DurkPlugin;
+import dev.cromo29.durkcore.specificutils.NumberUtil;
+import dev.cromo29.durkcore.util.GsonManager;
+import dev.cromo29.durkcore.util.TXT;
+import dev.cromo29.durkcore.util.TimeFormat;
+import dev.cromo29.durkcore.util.VaultAPI;
 import dev.cromo29.terrains.api.GuiAPI;
 import dev.cromo29.terrains.api.TerrainAPI;
 import dev.cromo29.terrains.events.*;

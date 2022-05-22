@@ -2,7 +2,7 @@ package dev.cromo29.terrains.managers;
 
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
-import dev.cromo29.durkcore.Util.TXT;
+import dev.cromo29.durkcore.util.TXT;
 import dev.cromo29.terrains.TerrainPlugin;
 import dev.cromo29.terrains.object.Terrain;
 import org.bukkit.OfflinePlayer;

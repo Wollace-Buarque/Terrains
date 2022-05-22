@@ -1,6 +1,6 @@
 package dev.cromo29.terrains.commands;
 
-import dev.cromo29.durkcore.API.DurkCommand;
+import dev.cromo29.durkcore.api.DurkCommand;
 import dev.cromo29.terrains.TerrainPlugin;
 
 import java.util.List;

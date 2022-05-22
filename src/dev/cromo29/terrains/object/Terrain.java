@@ -1,6 +1,6 @@
 package dev.cromo29.terrains.object;
 
-import dev.cromo29.durkcore.Util.TXT;
+import dev.cromo29.durkcore.util.TXT;
 import dev.cromo29.terrains.TerrainPlugin;
 
 import java.util.HashMap;

@@ -1,6 +1,6 @@
 package dev.cromo29.terrains.commands;
 
-import dev.cromo29.durkcore.API.DurkCommand;
+import dev.cromo29.durkcore.api.DurkCommand;
 import dev.cromo29.terrains.managers.TerrainManager;
 import dev.cromo29.terrains.TerrainPlugin;
 import org.bukkit.configuration.file.FileConfiguration;
